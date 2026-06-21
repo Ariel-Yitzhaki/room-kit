@@ -13,11 +13,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val db = Room.databaseBuilder(
-            applicationContext,
-            TestDatabase::class.java,
-            "test.db"
-        ).build()
+        val db = com.example.mylibrary.RoomKit.build<TestDatabase>(applicationContext, "test.db")
 
         CoroutineScope(Dispatchers.IO).launch {
             db.testDao().insert(
